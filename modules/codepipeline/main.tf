@@ -19,8 +19,8 @@ resource "aws_codepipeline" "vite_pipeline" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        ConnectionArn    = "arn:aws:codestar-connections:ap-south-1:068760013706:connection/b96e308b-5a62-4a42-9d1c-034aa0739a0b"  # ✅ Replace with your connection ARN
-        FullRepositoryId = "asish915/devops-demo"
+        ConnectionArn    = "arn:aws:codestar-connections:ap-south-1:068760013706:connection/b56159dc-c90f-42f1-a5c9-e92326356d6e"  # ✅ Replace with your connection ARN
+        FullRepositoryId = "asish915/devops-project"
         BranchName       = "main"
       }
     }
