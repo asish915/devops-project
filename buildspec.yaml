@@ -6,16 +6,19 @@ phases:
       nodejs: 18 # ✅ Set Node.js version
     commands:
       - echo "📦 Installing Node.js dependencies..."
-      - npm install # ✅ faster & more deterministic than `npm install`
+      - cd vite-app           # ✅ Move into your app directory
+      - npm install           # ✅ Install dependencies
 
   build:
     commands:
       - echo "⚙️  Building Vite React App..."
-      - npm run build
+      - cd vite-app           # ✅ Ensure we're inside vite-app
+      - npm run build         # ✅ Build the app
 
 artifacts:
   files:
-    - '**/*' # ✅ includes dist/** + appspec.yml + scripts/*
-  base-directory: dist # ✅ CodeDeploy will deploy from this folder
+    - '**/*'                  # ✅ Includes dist/** + appspec.yml + scripts/*
+  base-directory: vite-app/dist # ✅ Output folder relative to root
   discard-paths: no
+
 
