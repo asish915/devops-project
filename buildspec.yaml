@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18 # ✅ Set Node.js version
+    commands:
+      - echo "📦 Installing Node.js dependencies..."
+      - npm ci # ✅ faster & more deterministic than `npm install`
+
+  build:
+    commands:
+      - echo "⚙️  Building Vite React App..."
+      - npm run build
+
+artifacts:
+  files:
+    - '**/*' # ✅ includes dist/** + appspec.yml + scripts/*
+  base-directory: dist # ✅ CodeDeploy will deploy from this folder
+  discard-paths: no
+

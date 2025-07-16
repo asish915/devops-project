@@ -1,1 +1,0 @@
-variable "connection_name" {}
