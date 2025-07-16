@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 20  # ✅ Upgrade Node.js version
+      nodejs: 20
     commands:
       - echo "📦 Installing Node.js dependencies..."
       - cd vite-app
@@ -16,9 +16,12 @@ phases:
 
 artifacts:
   files:
-    - '**/*'
-  base-directory: vite-app/dist
+    - vite-app/dist/**        # ✅ built static files
+    - appspec.yml             # ✅ required by CodeDeploy
+    - scripts/**              # ✅ your deploy scripts
+  base-directory: .           # ✅ base is project root
   discard-paths: no
+
 
 
 
