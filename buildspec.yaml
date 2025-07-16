@@ -3,21 +3,21 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+      nodejs: 20  # ✅ Upgrade Node.js version
     commands:
       - echo "📦 Installing Node.js dependencies..."
-      - cd vite-app             # ✅ move to app dir
+      - cd vite-app
       - npm install
 
   build:
     commands:
       - echo "⚙️  Building Vite React App..."
-      - npm run build           # ✅ don't cd again
+      - npm run build
 
 artifacts:
   files:
     - '**/*'
-  base-directory: vite-app/dist  # ✅ output folder after build
+  base-directory: vite-app/dist
   discard-paths: no
 
 
