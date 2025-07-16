@@ -6,7 +6,7 @@ phases:
       nodejs: 18 # ✅ Set Node.js version
     commands:
       - echo "📦 Installing Node.js dependencies..."
-      - npm ci # ✅ faster & more deterministic than `npm install`
+      - npm install # ✅ faster & more deterministic than `npm install`
 
   build:
     commands:
