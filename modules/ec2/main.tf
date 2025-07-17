@@ -1,4 +1,4 @@
-resource "aws_instance" "ec2_instance" {
+resource "aws_instance" "test-ec2" {
   ami                         = "ami-04890fefece4fb64f" # ✅ Amazon Linux 2
   instance_type               = "t2.micro"
   key_name                    = "DevOps_mumbai1"         # 🔁 Change this
