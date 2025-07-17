@@ -13,6 +13,7 @@ phases:
     commands:
       - echo "⚙️ Building Vite React App..."
       - npm run build
+      - cp -r vite-app/dist .
       - echo "✅ Build complete."
 
 post_build:
