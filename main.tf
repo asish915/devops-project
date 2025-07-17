@@ -4,14 +4,14 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 6.3"
+      version = "~> 6.3"       # using stable version
     }
   }
 }
 
 
 provider "aws" {
-  region = ap-south-1  #Provided here
+  region = "ap-south-1"  #Provided here
 }
 
 module "s3" {
