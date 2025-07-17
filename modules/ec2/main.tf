@@ -1,5 +1,5 @@
 resource "aws_instance" "test-ec2" {
-  ami                         = "ami-04890fefece4fb64f" # ✅ Amazon Linux 2
+  ami                         = "ami-075eca98db1646c23" # ✅ Amazon Linux 2
   instance_type               = "t2.micro"
   key_name                    = "DevOps_mumbai1"         # 🔁 Change this
   subnet_id                   = "subnet-0e7598753b990a358"       # 🔁 Change this
