@@ -69,32 +69,35 @@ resource "aws_iam_role_policy" "ec2_codedeploy_policy" {
   name = "ec2-codedeploy-policy"
   role = aws_iam_role.ec2_instance_role.name
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "codedeploy:PollHostCommand",
-          "codedeploy:PutHostCommandComplete",
-          "codedeploy:PutHostCommandAcknowledgement",
-          "codedeploy:PutLifecycleEventHookExecutionStatus",
-          "codedeploy:GetDeploymentInstance",
-          "codedeploy:RegisterOnPremisesInstance",
-          "codedeploy:UpdateInstanceAgent",
-          "s3:Get*",
-          "s3:List*",
-          "cloudwatch:PutMetricData",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents",
-          "logs:CreateLogGroup",
-          "ec2:Describe*"
-        ]
-        Resource = "*"
-      }
-    ]
-  })
+  {
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codedeploy:PollHostCommand",
+        "codedeploy:PutHostCommandComplete",
+        "codedeploy:PutHostCommandAcknowledgement",
+        "codedeploy:PutLifecycleEventHookExecutionStatus",
+        "codedeploy:GetDeploymentInstance",
+        "codedeploy:GetDeployment",
+        "codedeploy:RegisterOnPremisesInstance",
+        "codedeploy:UpdateInstanceAgent",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "cloudwatch:PutMetricData",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:CreateLogGroup",
+        "ec2:DescribeInstances",
+        "ec2:DescribeTags"
+      ],
+      "Resource": "*"
+    }
+  ]
 }
+}
+
 
 # EC2 Instance Profile
 resource "aws_iam_instance_profile" "ec2_profile" {
