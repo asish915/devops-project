@@ -1,13 +1,11 @@
-resource "aws_instance" "test-ec2" {
-  ami                         = "ami-0a1235697f4afa8a4" # ✅ Amazon Linux 2 (confirm it's valid)
+resource "aws_instance" "ec2_instance" {
+  ami                         = "ami-04890fefece4fb64f" # ✅ Amazon Linux 2
   instance_type               = "t2.micro"
-  key_name                    = "DevOps_mumbai1"        # ✅ Replace with your key pair
-  subnet_id                   = "subnet-0e7598753b990a358" # ✅ Replace with your subnet
-  vpc_security_group_ids      = ["sg-0b6daf7dd174071b8"]   # ✅ FIXED: should be a list (not a string)
-  iam_instance_profile        = "ec2_codedeploy_profile"   # ✅ Must exist
-
+  key_name                    = "DevOps_mumbai1"         # 🔁 Change this
+  subnet_id                   = "subnet-0e7598753b990a358"       # 🔁 Change this
+  vpc_security_group_ids      = ["sg-0b6daf7dd174071b8"]         # 🔁 Change this
+  iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
   associate_public_ip_address = true
-
 
   user_data = <<-EOF
               #!/bin/bash
@@ -20,8 +18,6 @@ resource "aws_instance" "test-ec2" {
               systemctl start codedeploy-agent
               systemctl enable codedeploy-agent
               systemctl start nginx
-
-              # Optional: prepare app directory
               mkdir -p /home/ec2-user/app
               chown ec2-user:ec2-user /home/ec2-user/app
               EOF
@@ -30,4 +26,5 @@ resource "aws_instance" "test-ec2" {
     Name = "dummy-target"
   }
 }
+
 
