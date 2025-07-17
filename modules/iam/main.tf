@@ -75,20 +75,17 @@ resource "aws_iam_role_policy" "ec2_codedeploy_policy" {
       {
         Effect = "Allow",
         Action = [
-          "codedeploy:PollHostCommand",
-          "codedeploy:PutHostCommandComplete",
-          "codedeploy:PutHostCommandAcknowledgement",
-          "codedeploy:PutLifecycleEventHookExecutionStatus",
-          "codedeploy:GetDeploymentInstance",
           "codedeploy:GetDeployment",
-          "codedeploy:RegisterOnPremisesInstance",
-          "codedeploy:UpdateInstanceAgent",
+          "codedeploy:GetDeploymentGroup",
+          "codedeploy:GetDeploymentTarget",
+          "codedeploy:ListDeploymentTargets",
+          "codedeploy:PutLifecycleEventHookExecutionStatus",
           "s3:GetObject",
           "s3:ListBucket",
           "cloudwatch:PutMetricData",
+          "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents",
-          "logs:CreateLogGroup",
           "ec2:DescribeInstances",
           "ec2:DescribeTags"
         ],
@@ -97,6 +94,7 @@ resource "aws_iam_role_policy" "ec2_codedeploy_policy" {
     ]
   })
 }
+
 
 # EC2 Instance Profile
 resource "aws_iam_instance_profile" "ec2_profile" {
