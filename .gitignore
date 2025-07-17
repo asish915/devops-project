@@ -17,7 +17,6 @@ terraform.tfvars.json
 # Node.js / Vite App
 # ========================
 node_modules/
-dist/
 build/
 .vite/
 .env
