@@ -70,29 +70,31 @@ resource "aws_iam_role_policy" "ec2_codedeploy_policy" {
   role = aws_iam_role.ec2_instance_role.name
 
   policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect = "Allow",
-        Action = [
-          "codedeploy:GetDeployment",
-          "codedeploy:GetDeploymentGroup",
-          "codedeploy:GetDeploymentTarget",
-          "codedeploy:ListDeploymentTargets",
-          "codedeploy:PutLifecycleEventHookExecutionStatus",
-          "s3:GetObject",
-          "s3:ListBucket",
-          "cloudwatch:PutMetricData",
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents",
-          "ec2:DescribeInstances",
-          "ec2:DescribeTags"
-        ],
-        Resource = "*"
-      }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codedeploy:*",
+        "ec2:Describe*",
+        "s3:Get*",
+        "s3:List*",
+        "cloudwatch:PutMetricData",
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "autoscaling:CompleteLifecycleAction",
+        "autoscaling:DeleteLifecycleHook",
+        "autoscaling:DescribeAutoScalingGroups",
+        "autoscaling:DescribeLifecycleHooks",
+        "autoscaling:PutLifecycleHook",
+        "autoscaling:RecordLifecycleActionHeartbeat"
+      ],
+      "Resource": "*"
+    }
+  ]
   })
+
 }
 
 
