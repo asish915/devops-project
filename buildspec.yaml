@@ -3,25 +3,24 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 20
+      nodejs: 18
     commands:
-      - echo "📦 Installing Node.js dependencies..."
+      - echo "Installing dependencies..."
       - cd vite-app
       - npm install
-
   build:
     commands:
-      - echo "⚙️  Building Vite React App..."
+      - echo "Building the Vite app..."
       - npm run build
+  post_build:
+    commands:
+      - echo "Moving build output to root-level dist/"
+      - mkdir -p dist
+      - cp -r vite-app/dist/* dist/
 
 artifacts:
   files:
-    - vite-app/dist/**        # ✅ built static files
-    - appspec.yml             # ✅ required by CodeDeploy
-    - scripts/**              # ✅ your deploy scripts
-  base-directory: .           # ✅ base is project root
-  discard-paths: no
-
-
-
+    - dist/**/*
+    - appspec.yml
+    - scripts/**/*
 

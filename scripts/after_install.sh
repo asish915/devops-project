@@ -1,17 +1,19 @@
 #!/bin/bash
 
-set -e  # Exit if any command fails
+echo "✅ Updating packages..."
+sudo yum update -y
 
-echo "🔧 [AfterInstall] Cleaning old app in /var/www/html..."
-rm -rf /var/www/html/*
+echo "🧰 Installing NGINX..."
+sudo yum install -y nginx
 
-echo "🧱 [AfterInstall] Copying new build files..."
-cp -r /home/ec2-user/app/dist/* /var/www/html/
+echo "🚀 Enabling and restarting NGINX..."
+sudo systemctl enable nginx
+sudo systemctl start nginx
 
-echo "🧰 [AfterInstall] Updating Nginx config..."
-cp /home/ec2-user/app/nginx.conf /etc/nginx/nginx.conf
+echo "🧹 Cleaning old web content..."
+sudo rm -rf /usr/share/nginx/html/*
 
-echo "🔁 [AfterInstall] Restarting Nginx..."
-systemctl restart nginx
+echo "📦 Copying new build to NGINX root..."
+sudo cp -r /home/ec2-user/app/dist/* /usr/share/nginx/html/
 
-echo "✅ [AfterInstall] Deployment complete."
+echo "✅ Deployment complete!"
