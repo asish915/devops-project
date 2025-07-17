@@ -95,7 +95,7 @@ resource "aws_iam_role_policy" "ec2_codedeploy_policy" {
       "Resource": "*"
     }
   ]
-}
+  }
 }
 
 
