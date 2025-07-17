@@ -6,27 +6,23 @@ phases:
       nodejs: 20
     commands:
       - echo "📦 Installing dependencies..."
-      - cd vite-app
-      - npm install
+      - cd vite-app && npm install      # install inside vite-app
 
   build:
     commands:
       - echo "⚙️ Building Vite React App..."
-      - npm run build
-      - cp -r vite-app/dist .
+      - cd vite-app && npm run build    # build inside vite-app
+      - cp -r vite-app/dist ./dist      # copy dist folder to root for artifacts
       - echo "✅ Build complete."
 
-post_build:
-  commands:
-    - echo "📂 Copying Vite build output to root dist/ directory..."
-    - mkdir -p ../dist
-    - cp -r dist/* ../dist/
-    - echo "✅ Moved build output successfully."
+  post_build:
+    commands:
+      - echo "📂 Verifying dist contents..."
+      - ls -la dist                     # list dist folder content to confirm
+      - echo "✅ Post-build complete."
 
 artifacts:
   files:
     - dist/**/*
     - appspec.yml
     - scripts/**/*
-
-
