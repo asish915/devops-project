@@ -4,7 +4,7 @@ resource "aws_instance" "ec2_instance" {
   key_name                    = "DevOps_mumbai1"         # 🔁 Change this
   subnet_id                   = "subnet-0e7598753b990a358"       # 🔁 Change this
   vpc_security_group_ids      = ["sg-0b6daf7dd174071b8"]         # 🔁 Change this
-  iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
+  iam_instance_profile        = "ec2_codedeploy_profile"   # ✅ Must exist
   associate_public_ip_address = true
 
   user_data = <<-EOF
