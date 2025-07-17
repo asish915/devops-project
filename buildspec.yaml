@@ -15,12 +15,12 @@ phases:
       - npm run build
       - echo "✅ Build complete."
 
-  post_build:
-    commands:
-      - echo "📂 Moving build output to root-level dist..."
-      - mkdir -p dist
-      - cp -r vite-app/dist/* dist/
-      - echo "✅ Done."
+post_build:
+  commands:
+    - echo "📂 Copying Vite build output to root dist/ directory..."
+    - mkdir -p ../dist
+    - cp -r dist/* ../dist/
+    - echo "✅ Moved build output successfully."
 
 artifacts:
   files:
