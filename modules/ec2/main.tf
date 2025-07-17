@@ -18,8 +18,8 @@ resource "aws_instance" "test-ec2" {
               systemctl start codedeploy-agent
               systemctl enable codedeploy-agent
               systemctl start nginx
-              mkdir -p /home/ec2-user/app
-              chown ec2-user:ec2-user /home/ec2-user/app
+              mkdir -p /home/ec2-user/vite-app
+              chown ec2-user:ec2-user /home/ec2-user/vite-app
               EOF
 
   tags = {
