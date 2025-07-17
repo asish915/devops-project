@@ -3,8 +3,10 @@ version: 0.0
 os: linux
 
 files:
-  - source: /
+  - source: dist/
     destination: /home/ec2-user/vite-app
+  - source: scripts/
+    destination: /home/ec2-user/scripts
 
 hooks:
   BeforeInstall:

@@ -1,5 +1,4 @@
 #!/bin/bash
 
-echo "🔄 Restarting nginx..."
+echo "🚀 Starting Vite app with NGINX..."
 sudo systemctl restart nginx
-echo "✅ NGINX restarted successfully!"

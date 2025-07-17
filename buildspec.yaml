@@ -11,16 +11,16 @@ phases:
 
   build:
     commands:
-      - set -e # Exit on error
       - echo "⚙️ Building Vite React App..."
       - npm run build
+      - echo "✅ Build complete."
 
   post_build:
     commands:
-      - echo "📂 Moving build output to top-level dist/"
-      - cd ..
+      - echo "📂 Moving build output to root-level dist..."
       - mkdir -p dist
       - cp -r vite-app/dist/* dist/
+      - echo "✅ Done."
 
 artifacts:
   files:
