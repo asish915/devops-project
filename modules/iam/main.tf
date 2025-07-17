@@ -52,21 +52,51 @@ resource "aws_iam_role" "ec2_instance_role" {
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [{
-      Effect = "Allow"
-      Principal = {
-        Service = "ec2.amazonaws.com"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
       }
-      Action = "sts:AssumeRole"
-    }]
+    ]
   })
 }
 
-resource "aws_iam_role_policy_attachment" "ec2_policy" {
-  role       = aws_iam_role.ec2_instance_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+# Inline policy with CodeDeploy + CloudWatch + EC2 + S3 permissions
+resource "aws_iam_role_policy" "ec2_codedeploy_policy" {
+  name = "ec2-codedeploy-policy"
+  role = aws_iam_role.ec2_instance_role.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "codedeploy:PollHostCommand",
+          "codedeploy:PutHostCommandComplete",
+          "codedeploy:PutHostCommandAcknowledgement",
+          "codedeploy:PutLifecycleEventHookExecutionStatus",
+          "codedeploy:GetDeploymentInstance",
+          "codedeploy:RegisterOnPremisesInstance",
+          "codedeploy:UpdateInstanceAgent",
+          "s3:Get*",
+          "s3:List*",
+          "cloudwatch:PutMetricData",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:CreateLogGroup",
+          "ec2:Describe*"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
 }
 
+# EC2 Instance Profile
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "ec2_codedeploy_profile"
   role = aws_iam_role.ec2_instance_role.name
