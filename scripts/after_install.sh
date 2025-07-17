@@ -14,6 +14,6 @@ echo "🧹 Cleaning old web content..."
 sudo rm -rf /usr/share/nginx/html/*
 
 echo "📦 Copying new build to NGINX root..."
-sudo cp -r /home/ec2-user/app/dist/* /usr/share/nginx/html/
+sudo cp -r /home/ec2-user/vite-app/dist/* /usr/share/nginx/html/
 
 echo "✅ Deployment complete!"

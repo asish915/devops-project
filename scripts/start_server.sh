@@ -1,4 +1,5 @@
 #!/bin/bash
-echo "Starting nginx..."
-systemctl start nginx
-echo "Nginx started successfully."
+
+echo "🔄 Restarting nginx..."
+sudo systemctl restart nginx
+echo "✅ NGINX restarted successfully!"
