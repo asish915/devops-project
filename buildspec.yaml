@@ -6,12 +6,13 @@ phases:
       nodejs: 20
     commands:
       - echo "📦 Installing dependencies..."
-      - cd vite-app && npm install      # install inside vite-app
+      - cd vite-app 
+      - npm install      # install inside vite-app
 
   build:
     commands:
       - echo "⚙️ Building Vite React App..."
-      - cd vite-app && npm run build    # build inside vite-app
+      - npm run build    # build inside vite-app
       - cp -r vite-app/dist ./dist      # copy dist folder to root for artifacts
       - echo "✅ Build complete."
 
