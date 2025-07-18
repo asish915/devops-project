@@ -61,4 +61,4 @@ resource "aws_codepipeline" "vite_pipeline" {
   #    }
   #  }
   # }
-# }
+ }
