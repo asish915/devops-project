@@ -60,5 +60,4 @@ docker-compose.override.yml
 # Optional: Ignore build artifacts
 # ========================
 *.tar.gz
-*.zip
 *.tgz
