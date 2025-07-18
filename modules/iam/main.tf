@@ -133,6 +133,6 @@ resource "aws_iam_role_policy_attachment" "codepipeline_policy" {
 
 
 resource "aws_codestarconnections_connection" "github_connection" {
-  name          = "asish-git-connection"
+  name          = "github-connection"
   provider_type = "GitHub"
 }
