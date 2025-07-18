@@ -44,7 +44,7 @@ jobs:
     - name: Trigger CodeDeploy
       run: |
         aws deploy create-deployment \
-          --application-name vite-deploy-app \
+          --application-name vite-react-app \
           --deployment-group-name vite-react-group \
           --s3-location bucket=${{ secrets.S3_BUCKET }},bundleType=zip,key=vite-app.zip \
           --deployment-config-name CodeDeployDefault.OneAtATime \
