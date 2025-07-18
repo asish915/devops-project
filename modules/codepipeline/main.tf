@@ -44,21 +44,21 @@ resource "aws_codepipeline" "vite_pipeline" {
     }
   }
 
-  stage {
-    name = "Deploy"
+  # stage {
+  #  name = "Deploy"
 
-    action {
-      name            = "DeployAction"
-      category        = "Deploy"
-      owner           = "AWS"
-      provider        = "CodeDeploy"
-      input_artifacts = ["build_output"]
-      version         = "1"
+  #  action {
+  #    name            = "DeployAction"
+  #    category        = "Deploy"
+  #    owner           = "AWS"
+  #    provider        = "CodeDeploy"
+  #    input_artifacts = ["build_output"]
+  #    version         = "1"
 
-      configuration = {
-        ApplicationName     = "vite-react-app"      # ✅ Replace with your CodeDeploy App name
-        DeploymentGroupName = "vite-react-group"    # ✅ Replace with your CodeDeploy group name
-      }
-    }
-  }
-}
+  #    configuration = {
+  #      ApplicationName     = "vite-react-app"      # ✅ Replace with your CodeDeploy App name
+  #      DeploymentGroupName = "vite-react-group"    # ✅ Replace with your CodeDeploy group name
+  #    }
+  #  }
+  # }
+# }
